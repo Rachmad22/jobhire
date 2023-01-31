@@ -1,0 +1,25 @@
+@import "./variabel";
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+    color: inherit !important;
+    text-decoration: none !important;
+    color: $primary !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.btn-primary {
+    background-color: $primary !important;
+    border-color: $primary !important;
+}

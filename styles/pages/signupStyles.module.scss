@@ -1,0 +1,59 @@
+.main {
+    .colKiri {
+        background-image: url("/images/bg-login.jpg");
+        background-size: cover;
+        background-position: center;
+        height: 120vh;
+        position: relative;
+
+        .overlay {
+            background-color: #5e50a1ad;
+            height: 120vh;
+            width: 100%;
+        }
+
+        .logo {
+            position: absolute;
+            width: 70px;
+            height: 25px;
+            left: 45px;
+            top: 30px;
+
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+        }
+
+        .content {
+            position: absolute;
+            top: 0px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+
+            h1 {
+                font-style: normal;
+                font-weight: 700;
+                font-size: 44px;
+                line-height: 70px;
+                color: #ffffff;
+            }
+        }
+    }
+
+    .colKanan {
+        padding: 50px;
+    }
+
+    .centerContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 80px;
+        height: 100vh;
+    }
+}
