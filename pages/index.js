@@ -1,3 +1,4 @@
+import axios from "axios";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -18,3 +19,11 @@ export default function Home() {
         </div>
     );
 }
+
+// export async function getServerSideProps(context) {
+
+//     const user = await axios.get("") 
+//     return {
+//       props: {}, // will be passed to the page component as props
+//     }
+//   }

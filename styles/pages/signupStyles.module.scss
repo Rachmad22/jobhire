@@ -19,13 +19,12 @@
             left: 45px;
             top: 30px;
 
-            font-family: 'Open Sans';
             font-style: normal;
             font-weight: 600;
             font-size: 14px;
             line-height: 19px;
         }
-
+        
         .content {
             position: absolute;
             top: 0px;
@@ -34,8 +33,9 @@
             justify-content: center;
             align-items: center;
             padding: 50px;
-
+            
             h1 {
+                font-family: 'Open Sans';
                 font-style: normal;
                 font-weight: 700;
                 font-size: 44px;
@@ -47,6 +47,16 @@
 
     .colKanan {
         padding: 50px;
+
+        h2{
+            font-family: 'Open Sans';
+            font-weight: 600;
+        }
+
+        p, form{
+            font-family: 'Open Sans';
+            font-weight: 400;
+        }
     }
 
     .centerContent {

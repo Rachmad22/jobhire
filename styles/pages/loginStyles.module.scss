@@ -21,7 +21,6 @@ $backgroundMerah: #F6F7F8;
             left: 45px;
             top: 30px;
 
-            font-family: 'Open Sans';
             font-style: normal;
             font-weight: 600;
             font-size: 14px;
@@ -36,8 +35,9 @@ $backgroundMerah: #F6F7F8;
             justify-content: center;
             align-items: center;
             padding: 50px;
-
+            
             h1 {
+                font-family: 'Open Sans';
                 font-style: normal;
                 font-weight: 700;
                 font-size: 44px;
@@ -49,6 +49,16 @@ $backgroundMerah: #F6F7F8;
 
     .colKanan {
         padding: 50px;
+
+        h2{
+            font-family: 'Open Sans';
+            font-weight: 600;
+        }
+
+        p, form{
+            font-family: 'Open Sans';
+            font-weight: 400;
+        }
     }
 
     .centerContent {

@@ -2,15 +2,10 @@ import axios from "axios";
 
 export default function handler(req, res) {
     try {
-        const { fullname, email, phone_number, password } = req.body;
+        const { name, email, phoneNumber, password } = req.body;
         axios
-            .post(`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register/recruiter`, {
-                fullname,
-                email,
-                company,
-                position,
-                phone_number,
-                password,
+            .get(`http://localhost:3200/v1/user/profile`, {
+                id,
             })
             .then((response) => {
                 res.status(200).json(response.data);
