@@ -2,27 +2,45 @@ import axios from "axios";
 import React from "react";
 import style from "../../../styles/pages/loginStyles.module.scss";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
 
 function Recruiter() {
+  const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
+  React.useEffect(() => {
+    let checkIsLogin =
+      localStorage.getItem("token") && localStorage.getItem("profile");
+
+    if (checkIsLogin) {
+      router.replace("/");
+    }
+  }, []);
+
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
 
-      const connect = await axios.post("/api/login/recruiter", {
+      const connect = await axios.post("/api/login", {
         email,
         password,
       });
 
       setIsLoading(false);
       setError(null);
+      console.log(connect?.data?.data.recruiter_id)
+      if (connect?.data?.data.recruiter_id) {
+        localStorage.setItem("token", connect?.data?.token);
+        localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
 
-      localStorage.setItem("token", connect.data.token);
-      localStorage.setItem("profile", JSON.stringify(connect.data.data));
+        setCookie("token", connect?.data?.token);
+      } else {
+        setError("Can't login in this area");
+      }
     } catch (error) {
       setIsLoading(false);
       setError(
@@ -62,7 +80,7 @@ function Recruiter() {
                 </p>
 
                 {error && (
-                  <div class="alert alert-danger mb-3" role="alert">
+                  <div className="alert alert-danger mb-3" role="alert">
                     {error}
                   </div>
                 )}
@@ -93,7 +111,7 @@ function Recruiter() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <div class="d-grid mb-3">
+                  <div className="d-grid mb-3">
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg"
@@ -106,7 +124,7 @@ function Recruiter() {
 
                   <p className="text-center">
                     Anda belum punya akun?{" "}
-                    <a href="/auth/register/recruiter">Daftar disini</a>
+                    <a href="/auth/signup">Daftar disini</a>
                   </p>
                 </form>
               </div>

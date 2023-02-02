@@ -2,12 +2,24 @@ import axios from "axios";
 import React from "react";
 import style from "../../../styles/pages/loginStyles.module.scss";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { setCookie } from "cookies-next";
 
 function General() {
+  const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    let checkIsLogin =
+      localStorage.getItem("token") && localStorage.getItem("profile");
+
+    if (checkIsLogin) {
+      router.replace("/");
+    }
+  }, []);
 
   const handleSubmit = async () => {
     try {
@@ -20,9 +32,15 @@ function General() {
 
       setIsLoading(false);
       setError(null);
+console.log(connect?.data?.data.recruiter_id)
+      if (!connect?.data?.data.recruiter_id) {
+        localStorage.setItem("token", connect?.data?.token);
+        localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
 
-      localStorage.setItem("token", connect.data.token);
-      localStorage.setItem("profile", JSON.stringify(connect.data.data));
+        setCookie("token", connect?.data?.token);
+      } else {
+        setError("Can't login in this area");
+      }
     } catch (error) {
       setIsLoading(false);
       setError(
@@ -33,11 +51,11 @@ function General() {
 
   return (
     <>
-      <Head><title>SignUp Recruiter | Peworld</title>
+      <Head>
+        <title>Login Recruiter | Peworld</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
-      </Head>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet" /></Head>
       <div className={style.main}>
         <div className="row">
           <div className="col-md-6">
@@ -62,7 +80,7 @@ function General() {
                 </p>
 
                 {error && (
-                  <div class="alert alert-danger mb-3" role="alert">
+                  <div className="alert alert-danger mb-3" role="alert">
                     {error}
                   </div>
                 )}
@@ -93,7 +111,7 @@ function General() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <div class="d-grid mb-3">
+                  <div className="d-grid mb-3">
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg"

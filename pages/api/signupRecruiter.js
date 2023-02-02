@@ -4,9 +4,11 @@ export default function handler(req, res) {
     try {
         const { fullname, email, phone_number, password } = req.body;
         axios
-            .post(`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register`, {
+            .post(`${process.env.NEXT_PUBLIC_API_URL}/v1/auth/register/recruiter`, {
                 fullname,
                 email,
+                company,
+                position,
                 phone_number,
                 password,
             })

@@ -16,7 +16,7 @@ function Signup() {
     try {
       setIsLoading(true);
 
-      const connect = await axios.post("/api/register", {
+      const connect = await axios.post("/api/signup", {
         name,
         email,
         phoneNumber,
@@ -25,9 +25,8 @@ function Signup() {
 
       setIsLoading(false);
       setError(null);
-
-      localStorage.setItem("token", connect.data.token);
-      localStorage.setItem("profile", JSON.stringify(connect.data.data));
+      // localStorage.setItem("token", connect.data.token);
+      // localStorage.setItem("profile", JSON.stringify(connect.data.data));
     } catch (error) {
       setIsLoading(false);
       setError(
