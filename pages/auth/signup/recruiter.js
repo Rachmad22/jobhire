@@ -21,7 +21,7 @@ function SignupRecruiter() {
     try {
       setIsLoading(true);
 
-      const connect = await axios.post("/api/signup", {
+      await axios.post("/api/signupRecruiter", {
         fullname,
         email,
         company,
@@ -165,65 +165,6 @@ function SignupRecruiter() {
                       onKeyDown={(event) => {
                         if (event.key === "Enter") {
                           handleSubmit
-                          // setIsLoading(true);
-
-                          // axios
-                          //   .post(`${process.env.NEXT_PUBLIC_API_URL}/user/add`, {
-                          //     firstname,
-                          //     lastname,
-                          //     phone: phone_number,
-                          //     email,
-                          //     password,
-                          //   })
-                          //   .then((res) => {
-                          //     navigate("/Sign-in");
-                          //   })
-                          //   .catch((err) => {
-                          //     setIsError(true);
-                          //     if (
-                          //       err?.response?.data?.message?.firstname?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.firstname
-                          //           ?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.lastname?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.lastname?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.phone?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.phone?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.email?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.email?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.password?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.password?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     }
-                          //   })
-                          //   .finally(() => setIsLoading(false));
                         }
                       }}
                       type="password"

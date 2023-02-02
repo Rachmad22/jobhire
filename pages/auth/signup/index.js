@@ -16,7 +16,7 @@ function Signup() {
     try {
       setIsLoading(true);
 
-      const connect = await axios.post("/api/signup", {
+      await axios.post("/api/signup", {
         name,
         email,
         phoneNumber,
