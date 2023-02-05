@@ -107,7 +107,7 @@
     display: flex;
     justify-content: left;
     align-items: baseline;
-    // text-align: center;
+    margin-bottom: 0;
 
 
     .footer {
@@ -131,6 +131,9 @@
     }
 
     .footerLink {
+        hr{
+            color: white;
+        }
         p {
             position: absolute;
             margin-top: 120px;

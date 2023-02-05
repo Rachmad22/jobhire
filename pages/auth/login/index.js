@@ -32,7 +32,7 @@ function General() {
 
       setIsLoading(false);
       setError(null);
-console.log(connect?.data?.data.recruiter_id)
+// console.log(connect?.data?.data.recruiter_id)
       if (!connect?.data?.data.recruiter_id) {
         localStorage.setItem("token", connect?.data?.token);
         localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
@@ -52,10 +52,8 @@ console.log(connect?.data?.data.recruiter_id)
   return (
     <>
       <Head>
-        <title>Login Recruiter | Peworld</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet" /></Head>
+        <title>Login | Peworld</title>
+        </Head>
       <div className={style.main}>
         <div className="row">
           <div className="col-md-6">

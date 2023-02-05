@@ -6,7 +6,7 @@ import Head from "next/head";
 function Signup() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [phoneNumber, setPhoneNumber] = React.useState("");
+  const [phone_number, setPhone_number] = React.useState("");
   const [name, setName] = React.useState("");
 
   const [isLoading, setIsLoading] = React.useState(false);
@@ -19,7 +19,7 @@ function Signup() {
       await axios.post("/api/signup", {
         name,
         email,
-        phoneNumber,
+        phone_number,
         password,
       });
 
@@ -39,9 +39,6 @@ function Signup() {
     <>
       <Head>
         <title>SignUp | Peworld</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet" />
       </Head>
       <div className={style.main}>
         <div className="row">
@@ -108,7 +105,7 @@ function Signup() {
                       className="form-control phone"
                       id="inputAddress"
                       placeholder="Write your phone number"
-                      onChange={(event) => setPhoneNumber(event.target.value)}
+                      onChange={(event) => setPhone_number(event.target.value)}
                     />
                     <label
                       for="exampleFormControlInput1"

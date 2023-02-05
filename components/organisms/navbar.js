@@ -16,7 +16,6 @@ export default function Navbar({ item }) {
         <div className="d-flex align-items-center gap-5">
         <BsBell style={{ width: "25px", height: "25px" }} />
         <BsEnvelope style={{ width: "25px", height: "25px" }} />
-        {/* <img src="https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095493-stock-illustration-profile-icon-male-avatar.jpg" alt="profile" className={style.picture}/> */}
 
         <div className="dropdown">
               <img

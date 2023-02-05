@@ -5,7 +5,6 @@ import { GrLocation } from "react-icons/gr";
 import Link from "next/link";
 
 function JobItemList({ item }) {
-  console.log(item.skills)
   return (
     <React.Fragment>
       <div class="row py-4 align-items-center">
