@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import style from "../../styles/pages/jobStyles.module.scss"
 import axios from "axios";
-import {BsBell, BsEnvelope} from "react-icons/Bs"
+import {BsBell, BsEnvelope} from "react-icons/bs"
 
 export default function Navbar({ item }) {
 
