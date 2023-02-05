@@ -2,7 +2,7 @@
 import React from "react";
 import style from "../styles/pages/profile.module.scss";
 import Navbar from "@/components/organisms/navbar";
-import Footer from "@/components/organisms/footer";
+import Footer from "@/components/organisms/Footer";
 import { GrLocation } from "react-icons/gr";
 import Head from "next/head";
 import Portofolio from "@/components/molecules/portofolio"

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import style from "../../styles/pages/jobStyles.module.scss";
 import Head from "next/head";
 import JobItemList from "../../components/molecules/jobList";
-import Footer from "@/components/organisms/footer";
+import Footer from "@/components/organisms/Footer";
 import Top from "@/components/molecules/top";
 import Navbar from "@/components/organisms/navbar";
 import Search from "@/components/molecules/search";
