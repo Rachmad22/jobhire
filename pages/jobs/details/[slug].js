@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 function DetailProfile(props) {
   const { profile } = props;
@@ -22,11 +23,11 @@ function DetailProfile(props) {
             <h5 class="card-title">{profile?.name}</h5>
             <p class="card-text">
               Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+              bulk of the card&#39;s content.
             </p>
-            <a href="#" class="btn btn-primary">
+            <Link href="#" class="btn btn-primary">
               Go somewhere
-            </a>
+            </Link>
           </div>
         </div>
       </main>

@@ -7,11 +7,11 @@ import Link from "next/link";
 function JobItemList({ item }) {
   return (
     <React.Fragment>
-      <div class="row py-4 align-items-center">
-        <div class="col-md-1">
+      <div className="row py-4 align-items-center">
+        <div className="col-md-1">
           <img src={item?.image} alt="profile" className={style.profileImage} />
         </div>
-        <div class={`col-md-8 ${style.profileContent}`}>
+        <div className={`col-md-8 ${style.profileContent}`}>
           <h2>{item?.name}</h2>
           <p>{item?.job}</p>
 
@@ -32,17 +32,17 @@ function JobItemList({ item }) {
             ))}
 
             {item?.skills?.slice(3, item?.skills?.length)?.length ? (
-              <span class={`badge bg-warning ${style.skillBadge}`}>
+              <span className={`badge bg-warning ${style.skillBadge}`}>
                 +{item?.skills?.slice(3, item?.skills?.length)?.length}
               </span>
             ) : null}
           </div>
         </div>
-        <div class="col-md-2">
+        <div className="col-md-2">
           <Link href={`/jobs/details/${item?.slug}`}>
             <button
               type="button"
-              class={`btn btn-primary btn-lg`}
+              className={`btn btn-primary btn-lg`}
             >
               Lihat Profile
             </button>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import style from "../../../styles/pages/signupStyles.module.scss";
 import Head from "next/head";
+import Link from "next/link";
 
 function SignupRecruiter() {
   const [email, setEmail] = React.useState("");
@@ -186,7 +187,7 @@ function SignupRecruiter() {
 
                   <p className="text-center">
                     Anda sudah punya akun?{" "}
-                    <a href="/auth/login/recruiter">Login disini</a>
+                    <Link href="/auth/login/recruiter">Login disini</Link>
                   </p>
                 </form>
               </div>

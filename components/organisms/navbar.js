@@ -10,9 +10,9 @@ export default function Navbar({ item }) {
   return (
     <nav class="navbar bg-light fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="/">
+        <Link class="navbar-brand" href="/">
           <img src="/images/purple.svg" alt="Logo" className={`d-inline-block align-text-top ${style.brandNav}`}/>
-        </a>
+        </Link>
         <div className="d-flex align-items-center gap-5">
         <BsBell style={{ width: "25px", height: "25px" }} />
         <BsEnvelope style={{ width: "25px", height: "25px" }} />
@@ -30,10 +30,10 @@ export default function Navbar({ item }) {
                 className="dropdown-menu dropdown-menu-lg-end text-center"
                 >
                 <li>
-                  <a href="/">Profile</a>
+                  <Link href="/">Profile</Link>
                 </li>
                 <li>
-                  <a href="/">Logout</a>
+                  <Link href="/">Logout</Link>
                 </li>
               </ul>
             </div>

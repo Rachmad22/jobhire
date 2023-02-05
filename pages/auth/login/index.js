@@ -4,6 +4,7 @@ import style from "../../../styles/pages/loginStyles.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { setCookie } from "cookies-next";
+import Link from "next/link";
 
 function General() {
   const router = useRouter();
@@ -122,7 +123,7 @@ function General() {
 
                   <p className="text-center">
                     Anda belum punya akun?{" "}
-                    <a href="/auth/signup">Daftar disini</a>
+                    <Link href="/auth/signup">Daftar disini</Link>
                   </p>
                 </form>
               </div>

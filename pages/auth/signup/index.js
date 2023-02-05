@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import style from "../../../styles/pages/signupStyles.module.scss";
 import Head from "next/head";
+import Link from "next/link";
 
 function Signup() {
   const [email, setEmail] = React.useState("");
@@ -129,65 +130,7 @@ function Signup() {
                     <input
                       onKeyDown={(event) => {
                         if (event.key === "Enter") {
-                          // setIsLoading(true);
-
-                          // axios
-                          //   .post(`${process.env.NEXT_PUBLIC_API_URL}/user/add`, {
-                          //     firstname,
-                          //     lastname,
-                          //     phone: phoneNumber,
-                          //     email,
-                          //     password,
-                          //   })
-                          //   .then((res) => {
-                          //     navigate("/Sign-in");
-                          //   })
-                          //   .catch((err) => {
-                          //     setIsError(true);
-                          //     if (
-                          //       err?.response?.data?.message?.firstname?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.firstname
-                          //           ?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.lastname?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.lastname?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.phone?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.phone?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.email?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.email?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else if (
-                          //       err?.response?.data?.message?.password?.message
-                          //     ) {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message?.password?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     } else {
-                          //       setErrMsg(
-                          //         err?.response?.data?.message ??
-                          //           "System error, please try again later."
-                          //       );
-                          //     }
-                          //   })
-                          //   .finally(() => setIsLoading(false));
+                          handleSubmit
                         }
                       }}
                       type="password"
@@ -210,7 +153,7 @@ function Signup() {
 
                   <p className="text-center">
                     Anda sudah punya akun?{" "}
-                    <a href="/auth/login">Login disini</a>
+                    <Link href="/auth/login">Login disini</Link>
                   </p>
                 </form>
               </div>

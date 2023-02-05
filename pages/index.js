@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 
 export default function Home() {
     return (
@@ -10,11 +11,11 @@ export default function Home() {
             </Head>
 
             <main>
-                <a href="/jobs" className="d-flex justify-content-center">
+                <Link href="/jobs" className="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary">
                     Jobs List
                 </button>
-                </a>
+                </Link>
             </main>
         </div>
     );
