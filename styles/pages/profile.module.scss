@@ -55,8 +55,21 @@
         position: absolute;
         margin-top: 100px;
         z-index: 4;
+        width: 55vw;
     }
 
+
+    .porto{
+        width: 120px;
+        height: 90px;
+    }
+
+    .right{
+        position: absolute;
+        z-index: 4;
+        margin-top: 100px;
+        width: 60%;
+    }
 
     /* style for footer */
 .foot {

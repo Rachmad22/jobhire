@@ -1,0 +1,30 @@
+.main {
+    margin-top: 100px;
+
+    .overlay {
+        background-color: #5E50A1;
+        height: 200px;
+    }
+
+    .pp {
+        position: absolute;
+        left: 500px;
+        top: 120px;
+        z-index: 5;
+        width: 150px;
+        height: 150px;
+    }
+
+    .content {
+        margin-top: 100px;
+
+        .push {
+            width: 200px;
+            height: 50px;
+            margin-bottom: 50px;
+            margin-top: 30px;
+        }
+
+
+    }
+}
