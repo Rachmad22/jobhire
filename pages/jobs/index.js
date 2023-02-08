@@ -8,12 +8,26 @@ import Footer from "@/components/organisms/Footer";
 import Top from "@/components/molecules/top";
 import Navbar from "@/components/organisms/navbar";
 import Search from "@/components/molecules/search";
+import { useRouter } from "next/router";
 // import { getCookie } from "cookies-next";
 
 function Index(props) {
-  const { jobList } = props;
-  // console.log(jobList.data.rows[0].skills)
+  const {
+    jobList,
+    search } = props;
+  const router = useRouter()
+  const { data: { rows, count } } = router.query.keyword || router.query.order ? search : jobList
 
+  // const [page, setPage] = React.useState(1);
+  // const [total, setTotal] = React.useState(Math.ceil(count / 10));
+  
+  // const getDataByPage = async (_page) => {
+  //   const jobList = await axios.get(
+  //     `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=${_page}&order=ASC`
+  //   );
+  //   const convertData = jobList.data;
+  //   setData(convertData.data.rows);
+  // };
   return (
     <>
       <Head>
@@ -26,17 +40,67 @@ function Index(props) {
         <div className="container py-5">
           <Search />
           <div class={`card border-0 shadow ${style.cardStyle}`}>
-            {jobList?.data?.rows.map((item, key) => (
-                            <React.Fragment key={key}>
-                                <JobItemList item={{ 
-                                image: item['user.photo_profile'], 
-                                name: item['user.fullname'],
-                                job: item['job'],
-                                location: item ['domicile'],
-                                skills: item?.skills}} />
-                                <hr />
-                            </React.Fragment>
-                        ))}
+            {rows.map((item, key) => (
+              <React.Fragment key={key}>
+                <JobItemList item={{
+                  image: item['user.photo_profile'],
+                  name: item['user.fullname'],
+                  job: item['job'],
+                  location: item['domicile'],
+                  skills: item?.skills
+                }} />
+                <hr />
+              </React.Fragment>
+            ))}
+          </div>
+          <div className="d-flex justify-content-center mt-5">
+            {/* <nav>
+              <ul class="pagination">
+                <li
+                  class="page-item"
+                  onClick={() => {
+                    if (page > 1) {
+                      getDataByPage(page - 1);
+                      setPage(page - 1);
+                    }
+                  }}
+                >
+                  <a class="page-link" href="#">
+                    Previous
+                  </a>
+                </li>
+                {[...new Array(total)].map((item, key) => {
+                  let currentPage = ++key;
+                  return (
+                    <li
+                      class={`page-item ${page === currentPage ? "active" : ""}`}
+                      key={currentPage}
+                      onClick={() => {
+                        getDataByPage(currentPage);
+                        setPage(currentPage);
+                      }}
+                    >
+                      <a class="page-link" href="#">
+                        {currentPage}
+                      </a>
+                    </li>
+                  );
+                })}
+                <li
+                  class="page-item"
+                  onClick={() => {
+                    if (page < total) {
+                      getDataByPage(page + 1);
+                      setPage(page + 1);
+                    }
+                  }}
+                >
+                  <a class="page-link" href="#">
+                    Next
+                  </a>
+                </li>
+              </ul>
+            </nav> */}
           </div>
         </div>
       </main>
@@ -47,15 +111,27 @@ function Index(props) {
 
 export async function getServerSideProps(context) {
   const jobList = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list`
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=1`
   );
   const convertData = jobList.data;
+
+  const search = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=1&keyword=${context.query.keyword}&order=${context.query.order}&sortBy=id`
+  );
+  const convertDataSearch = search.data;
+
+
+  console.log(context.query.order)
+
+
 
   // const token = getCookie("token", { req, res });
 
   return {
     props: {
       jobList: convertData,
+      search: convertDataSearch,
+
     }, // will be passed to the page component as props
   };
 }

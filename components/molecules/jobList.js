@@ -5,6 +5,7 @@ import { GrLocation } from "react-icons/gr";
 import Link from "next/link";
 
 function JobItemList({ item }) {
+
   return (
     <React.Fragment>
       <div className="row py-4 align-items-center">
@@ -39,7 +40,7 @@ function JobItemList({ item }) {
           </div>
         </div>
         <div className="col-md-2">
-          <Link href={`/jobs/details/${item?.slug}`}>
+          <Link href={`/jobs/details/${item?.name}`}>
             <button
               type="button"
               className={`btn btn-primary btn-lg`}

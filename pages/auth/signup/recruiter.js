@@ -7,7 +7,6 @@ import Link from "next/link";
 function SignupRecruiter() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  // const [matchPassword, setMatchPassword] = useState("");
   const [phone_number, setPhone_number] = React.useState("");
   const [fullname, setFullname] = React.useState("");
   const [company, setCompany] = React.useState("");
@@ -30,14 +29,14 @@ function SignupRecruiter() {
         phone_number,
         password,
       });
-
       setIsLoading(false);
       setError(null);
-
+      
     } catch (error) {
+      console.log(error)
       setIsLoading(false);
       setError(
-        error?.response?.data?.messages ?? "Something wrong in our server"
+        error?.response?.data?.messages ?? error?.response?.data?.message?.email?.message ?? error?.response?.data?.message?.fullname?.message ?? error?.response?.data?.message?.phone_number?.message ?? error?.response?.data?.message?.password?.message ?? "Something wrong in our server"
       );
     }
   };

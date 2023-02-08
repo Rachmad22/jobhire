@@ -50,6 +50,7 @@ function Profile() {
             <div className="col-md-8">
               <div className={style.index}>
                 <Portofolio />
+
               </div>
             </div>
 

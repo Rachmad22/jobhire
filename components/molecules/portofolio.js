@@ -4,6 +4,7 @@ import style from "../../styles/pages/profile.module.scss"
 
 
 function Portofolio() {
+  // const { menuActive } = props
   const porto = [
     {
       id: 2,
@@ -67,7 +68,7 @@ function Portofolio() {
         <ul className="nav nav-tabs">
           <li className="nav-item">
             <a
-              className={`nav-link ${activeTab === "portofolio" ? "active" : ""}`}
+              className={`nav-link bg-light ${activeTab === "portofolio" ? "active" : ""}`}
               onClick={() => handleTabClick("portofolio")}
             >
               Portofolio
@@ -75,7 +76,7 @@ function Portofolio() {
           </li>
           <li className="nav-item">
             <a
-              className={`nav-link ${activeTab === "pengalaman" ? "active" : ""}`}
+              className={`nav-link bg-light ${activeTab === "pengalaman" ? "active" : ""}`}
               onClick={() => handleTabClick("pengalaman")}
             >
               Pengalaman Pekerjaan
@@ -85,30 +86,29 @@ function Portofolio() {
         <div className="tab-content">
           {activeTab === "portofolio" && (
             <div className="tab-pane fade show active">
-              {porto.map((item) => (
-                <div className="card">
-                  {/* <div className={style.porto}> */}
-                  <img src={item.src} alt={item} className="card-image-top"/>
-                  {/* </div> */}
-                  <div class="card-body">
-                    <p class="card-title">{item.title}</p>
-                  </div>
+              <div className="card">
+                <div className="card-body">
+                  {porto.map((item, key) => (
+                    <div key={key} className={`card ${style.porto}`}>
+                      <img src={item.src} alt={key} className="card-image-top" />
+                      <div class="card-body">
+                        <p class="card-title">{item.title}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           )}
           {activeTab === "pengalaman" && (
-            <div className="tab-pane fade">
-              {riwayat.map((_item)=>(
-                <div className="card">
-                <img src={_item.src} alt={_item}/>
-                <p>{_item.title}</p>
+            <div className="tab-pane fade show active">
+              {riwayat.map((_item, key) => (
+                <div key={key} className="card">
+                  <img src={_item.src} alt={key} />
+                  <p>{_item.title}</p>
                 </div>
               ))}
             </div>
-          )}
-          {activeTab === "contact" && (
-            <div className="tab-pane fade">...</div>
           )}
         </div>
       </div>

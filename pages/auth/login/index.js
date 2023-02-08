@@ -33,7 +33,6 @@ function General() {
 
       setIsLoading(false);
       setError(null);
-// console.log(connect?.data?.data.recruiter_id)
       if (!connect?.data?.data.recruiter_id) {
         localStorage.setItem("token", connect?.data?.token);
         localStorage.setItem("profile", JSON.stringify(connect?.data?.data));

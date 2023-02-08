@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import style from "../../styles/pages/jobStyles.module.scss"
+import {useRouter} from "next/router";
 
 function Search() {
+  const router = useRouter()
   const [keyword, setKeyword] = useState("")
+  const [sort, setSort] = useState("DESC")
 
 
   return (
@@ -14,9 +17,10 @@ function Search() {
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
-                    fetchByKeyword();
+                    router.push(`/jobs?keyword=${keyword}`)
                   }
-                }}/>
+                }}
+              />
         </div>
         <div className="col-md-2">
           <div className="dropdown">
@@ -24,22 +28,26 @@ function Search() {
               <select
                 className={`form-select ${style.btn}`}
                 aria-label="Default select example"
+                onChange= {(e)=>setSort(e.target.value)}
 
               >
                 <option selected disabled>
                   Sort
                 </option>
-                <option value="name_desc">Sortir berdasarkan nama</option>
-                <option value="skills_desc">Sortir berdasarkan skill</option>
-                <option value="domicile_desc">Sortir berdasarkan lokasi</option>
-                <option value="release_desc">Sortir berdasarkan freelance</option>
-                <option value="release_desc">Sortir berdasarkan fulltime</option>
+                <option value="DESC">Newest</option>
+                <option value="ASC">oldest</option>
+                {/* <option value="domicile_desc">A-Z</option>
+                <option value="release_desc">Z-A</option>
+                <option value="release_desc">Sortir berdasarkan fulltime</option> */}
               </select>
             </div>
           </div>
         </div>
         <div className="col-md-2">
-          <button className={`btn btn-primary ${style.submit}`} type="submit">Search</button>
+          <button className={`btn btn-primary ${style.submit}`} type="submit" onClick={(e) => {
+                    router.push(`/jobs?keyword=${keyword}&order=${sort}`)
+                  }
+                }>Search</button>
         </div>
       </div>
     </div>

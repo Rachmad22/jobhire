@@ -9,29 +9,26 @@ function Signup() {
   const [password, setPassword] = React.useState("");
   const [phone_number, setPhone_number] = React.useState("");
   const [name, setName] = React.useState("");
-
+  
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
 
   const handleSubmit = async () => {
     try {
       setIsLoading(true);
-
       await axios.post("/api/signup", {
-        name,
+        fullname : name,
         email,
         phone_number,
         password,
       });
-
       setIsLoading(false);
       setError(null);
-      // localStorage.setItem("token", connect.data.token);
-      // localStorage.setItem("profile", JSON.stringify(connect.data.data));
+      
     } catch (error) {
       setIsLoading(false);
       setError(
-        error?.response?.data?.messages ?? "Something wrong in our server"
+        error?.response?.data?.messages ?? error?.response?.data?.message?.email?.message ?? error?.response?.data?.message?.fullname?.message ?? error?.response?.data?.message?.phone_number?.message ?? error?.response?.data?.message?.password?.message ?? "Something wrong in our server"
       );
     }
   };
