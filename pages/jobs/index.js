@@ -116,7 +116,7 @@ function Index(props) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const jobList = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=5&page=1`
     );
@@ -132,7 +132,6 @@ export async function getStaticProps(context) {
       jobList: convertData,
       search: convertDataSearch,
     }, // will be passed to the page component as props
-    revalidate: 30, //second
   };
 }
 

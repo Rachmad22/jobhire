@@ -29,7 +29,6 @@ function Search() {
                 className={`form-select ${style.btn}`}
                 aria-label="Default select example"
                 onChange= {(e)=>setSort(e.target.value)}
-
               >
                 <option selected disabled>
                   Sort
