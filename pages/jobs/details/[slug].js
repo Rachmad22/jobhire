@@ -4,6 +4,12 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "@/components/organisms/navbar";
+import Footer from "@/components/organisms/Footer";
+import Skill from "@/components/molecules/skillProfile";
+import Sosmed from "@/components/molecules/sosmed";
+import style from "../../../styles/pages/profile.module.scss"
+import { GrLocation } from "react-icons/gr";
+import Portofolio from "@/components/molecules/portofolio";
 
 function DetailProfile(props) {
   const { profile } = props;
@@ -11,7 +17,7 @@ function DetailProfile(props) {
   const {
     query: { slug },
   } = router;
-
+// console.log(profile.user)
   return (
     <>
       <Head>
@@ -19,20 +25,57 @@ function DetailProfile(props) {
       </Head>
       <main>
         <Navbar />
-        <div class="card" style={{ width: "18rem" }}>
-          <img src={profile?.image} class="card-img-top" />
-          <div class="card-body">
-            <h5 class="card-title">{profile?.name}</h5>
-            <p class="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card&#39;s content.
-            </p>
-            <Link href="#" class="btn btn-primary">
-              Go somewhere
-            </Link>
+        <div className={style.overlay}></div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4">
+
+              <div className={`card ${style.left}`}>
+                <img src={profile.user.photo_profile} className={`card-img-top ${style.picture}`} alt="picture" />
+                <div className="card-body">
+                  <h5 className="card-title">{profile.user.fullname || "Unknown"}</h5>
+                  <p className="card-text">{profile.job}</p>
+                  <p className={`card-text ${style.detail}`}><GrLocation /> {profile.domicile}</p>
+                  <p className={`card-text ${style.detail}`}>{profile.company}</p>
+                  <p className={`card-text ${style.detail}`}>{profile.description}</p>
+                  <div className="d-grid mt-5">
+                    <Link href="/jobs/hire" className="btn btn-primary btn-lg mb-3 text-white">Hire</Link>
+                  </div>
+                  <h5>Skill</h5>
+
+                  <div className="d-flex gap-2 flex-wrap mt-3">
+                    <Skill item={{skills: JSON.parse(profile.skills)}}/>
+
+                    <div className="mt-3">
+                      <Sosmed item={{email: profile.user.email}}/>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div className="col-md-8">
+              <div className={style.index}>
+                <Portofolio item={{
+                portofolio: profile?.portfolios,
+                link: profile['portofolios.link'],
+                photo: profile['portfolios.photo'],
+                type: profile['portfolios.type'],
+                work_experience: profile?.work_experiences,
+                createdAt: profile['work_experiences.createdAt'],
+                position: profile['work_experiences.position'],
+                company: profile['work_experiences.company'],
+                description: profile['work_experiences.description'],
+                }}/>
+
+              </div>
+            </div>
+
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
@@ -44,7 +87,7 @@ export async function getServerSideProps(context) {
   const profile = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/v1/user/detail/${slug}`
   );
-  const convertData = profile.find((res) => res.data.id === slug);
+  const convertData = profile.data.data[0];
 
   return {
     props: {

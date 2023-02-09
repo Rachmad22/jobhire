@@ -33,7 +33,7 @@ export default function Navbar({ item }) {
                   <Link href="/">Profile</Link>
                 </li>
                 <li>
-                  <Link href="/">Logout</Link>
+                  <Link href="/auth/logout">Logout</Link>
                 </li>
               </ul>
             </div>

@@ -5,7 +5,9 @@ import React from "react";
 import Footer from "@/components/organisms/Footer";
 
 
-export default function Invitation() {
+export default function Edit() {
+  const [skillsEntered, setSkillsEntered] = React.useState([]);
+  const [skillsValue, setSkillsValue] = React.useState("");
 
   return (
     <>
@@ -54,24 +56,46 @@ export default function Invitation() {
                     <div class="form-group mb-3">
                       <label for="inputDesc">Deskripsi Singkat</label>
                       <textarea class="form-control" id="inputDesc" rows="5" placeholder="Masukkan Deskripsi Singkat">
-                        </textarea>
+                      </textarea>
                     </div>
                   </div>
                 </form>
-
+                <div>
+                  {skillsEntered.map((_item) => (
+                    <button class="btn btn-primary" key={_item}>
+                      {_item}
+                      <span
+                        class={`badge bg-secondary`}
+                        style={{ display: "inline-block", marginLeft: "20px" }}
+                        onClick={() => {
+                          let newSkills = skillsEntered.filter(
+                            (res) => res !== _item
+                          );
+                          setSkillsEntered(newSkills);
+                        }}
+                      >
+                        x
+                      </span>
+                    </button>
+                  ))}
+                </div>
+                <input
+                  class="form-control"
+                  placeholder="Enter your skills"
+                  onChange={(e) => setSkillsValue(e.target.value)}
+                  value={skillsValue}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      setSkillsEntered([...skillsEntered, ...[skillsValue]]);
+                      setSkillsValue("");
+                    }
+                  }}
+                />
               </div>
             </div>
-            {/* <div className={`card ${style.right}`}> */}
-            <div className="card">
-                <div className="card-body">
-                  <div class="input-group mb-3">
-                    <label for="inputSkill">Skill</label>
-                    <input type="text" id="inputSkill" class="form-control" placeholder="Skill" aria-label="Recipient's username" aria-describedby="button-addon2" />
-                    <button class="btn btn-primary" type="button" id="button-addon2">Simpan</button>
-                  </div>
-                </div>
-            </div>
+
           </div>
+
         </div>
       </div>
       <Footer />

@@ -3,58 +3,58 @@ import React, { useState } from "react";
 import style from "../../styles/pages/profile.module.scss"
 
 
-function Portofolio() {
+function Portofolio({ item }) {
   // const { menuActive } = props
-  const porto = [
-    {
-      id: 2,
-      title: "Remainder App",
-      src: "/images/portofolio/1.jpg",
-    },
-    {
-      id: 3,
-      title: "Social Media App",
-      src: "/images/portofolio/2.jpg",
-    },
-    {
-      id: 4,
-      title: "Project Management Web",
-      src: "/images/portofolio/3.jpg",
-    },
-    {
-      id: 5,
-      title: "Remainder App",
-      src: "/images/portofolio/4.jpg",
-    },
-    {
-      id: 6,
-      title: "Social Media App",
-      src: "/images/portofolio/5.jpg",
-    },
-    {
-      id: 7,
-      title: "Project Management Web",
-      src: "/images/portofolio/6.jpg",
-    },
-  ];
+  // const porto = [
+  //   {
+  //     id: 2,
+  //     title: "Remainder App",
+  //     src: "/images/portofolio/1.jpg",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Social Media App",
+  //     src: "/images/portofolio/2.jpg",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Project Management Web",
+  //     src: "/images/portofolio/3.jpg",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Remainder App",
+  //     src: "/images/portofolio/4.jpg",
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Social Media App",
+  //     src: "/images/portofolio/5.jpg",
+  //   },
+  //   {
+  //     id: 7,
+  //     title: "Project Management Web",
+  //     src: "/images/portofolio/6.jpg",
+  //   },
+  // ];
 
-  const riwayat = [
-    {
-      id: 4,
-      title: "Remainder App",
-      src: "/images/portofolio/1.jpg",
-    },
-    {
-      id: 5,
-      title: "Remainder App",
-      src: "/images/portofolio/1.jpg",
-    },
-    {
-      id: 6,
-      title: "Remainder App",
-      src: "/images/portofolio/1.jpg",
-    },
-  ];
+  // const riwayat = [
+  //   {
+  //     id: 4,
+  //     title: "Remainder App",
+  //     src: "/images/portofolio/1.jpg",
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "Remainder App",
+  //     src: "/images/portofolio/1.jpg",
+  //   },
+  //   {
+  //     id: 6,
+  //     title: "Remainder App",
+  //     src: "/images/portofolio/1.jpg",
+  //   },
+  // ];
 
   const [activeTab, setActiveTab] = useState("portofolio");
 
@@ -89,13 +89,13 @@ function Portofolio() {
               <div className="card">
                 <div className="card-body">
                   <div className="row gap-4">
-                    {porto.map((item, key) => (
-                      <div key={key} className={`card ${style.porto}`}>
-                        <img src={item.src} alt={key} className="card-image-top" />
+                    {item.portofolio.map((item, key) => (
+                      <Link href={item.link} key={key} className={`card ${style.porto}`}>
+                        <img src={item.photo} alt={key} className="card-image-top bg-dark" />
                         <div class="card-body">
-                          <p class="card-title text-center">{item.title}</p>
+                          <p class="card-title text-center">{item.type}</p>
                         </div>
-                      </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -104,12 +104,24 @@ function Portofolio() {
           )}
           {activeTab === "pengalaman" && (
             <div className="tab-pane fade show active">
-              {riwayat.map((_item, key) => (
-                <div key={key} className="card">
-                  <img src={_item.src} alt={key} />
-                  <p>{_item.title}</p>
+              <div className="card">
+                <div className="card-body">
+                  {item.work_experience.map((_item, key) => (
+                    <div key={key} className="row">
+                      <div className="col-2">
+                      <img src="/images/portofolio/tokped.svg" className={style.tokped} alt={key} />
+                      </div>
+                      <div className="col-5">
+                    <h3>{_item.position}</h3>
+                    <h5>{_item.company}</h5>
+                    <p>{_item.createdAt}</p>
+                    <p>{_item.description}</p>
+                    </div>
+                    </div>
+                    
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           )}
         </div>

@@ -18,7 +18,7 @@ function Recruiter() {
       localStorage.getItem("token") && localStorage.getItem("profile");
 
     if (checkIsLogin) {
-      router.replace("/");
+      router.replace("/")
     }
   }, []);
 
@@ -38,7 +38,9 @@ function Recruiter() {
         localStorage.setItem("token", connect?.data?.token);
         localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
 
-        setCookie("token", connect?.data?.token);
+        // setCookie("token", connect?.data?.token);
+        router.push("/jobs")
+
       } else {
         setError("Can't login in this area");
       }

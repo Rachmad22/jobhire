@@ -1,0 +1,43 @@
+.left {
+    width: 100%;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+
+    background: #FFFFFF;
+    border-radius: 8px;
+
+
+    .picture {
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        object-fit: cover;
+        object-position: center;
+
+    }
+
+    .detail{
+        .p{
+            margin-top: 0;
+            color: #9EA0A5;
+        }
+    }
+
+    .skillBadge {
+        background: rgba(251, 176, 23, 0.6) !important;
+        border: 1px solid #fbb017;
+        border-radius: 4px;
+        color: #fff;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+}
