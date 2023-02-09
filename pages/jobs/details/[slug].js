@@ -3,6 +3,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Navbar from "@/components/organisms/navbar";
 
 function DetailProfile(props) {
   const { profile } = props;
@@ -17,6 +18,7 @@ function DetailProfile(props) {
         <title>{slug} | Hire Jobs</title>
       </Head>
       <main>
+        <Navbar />
         <div class="card" style={{ width: "18rem" }}>
           <img src={profile?.image} class="card-img-top" />
           <div class="card-body">
@@ -39,10 +41,10 @@ export async function getServerSideProps(context) {
   const {
     query: { slug },
   } = context;
-  const jobList = await axios.get(
-    `${process.env.NEXT_PUBLIC_WEBSITE}/api/job-list`
+  const profile = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/detail/${slug}`
   );
-  const convertData = jobList.data?.find((res) => res.slug === slug);
+  const convertData = profile.find((res) => res.data.id === slug);
 
   return {
     props: {

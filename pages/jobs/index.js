@@ -12,22 +12,26 @@ import { useRouter } from "next/router";
 // import { getCookie } from "cookies-next";
 
 function Index(props) {
-  const {
-    jobList,
-    search } = props;
   const router = useRouter()
+  const { jobList, search } = props;
+
   const { data: { rows, count } } = router.query.keyword || router.query.order ? search : jobList
 
-  // const [page, setPage] = React.useState(1);
-  // const [total, setTotal] = React.useState(Math.ceil(count / 10));
+  // React.useEffect(() => {
+  //   console.log(sort)
+    
+  // }, [setSort]);
+  const [data, setData] = React.useState(rows);
+  const [page, setPage] = React.useState(1);
+  const [total, setTotal] = React.useState(Math.ceil(count / 5));
   
-  // const getDataByPage = async (_page) => {
-  //   const jobList = await axios.get(
-  //     `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=${_page}&order=ASC`
-  //   );
-  //   const convertData = jobList.data;
-  //   setData(convertData.data.rows);
-  // };
+  const getDataByPage = async (_page) => {
+    const jobList = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=${_page}&order=ASC`
+    );
+    const convertData = jobList.data;
+    setData(convertData.data.rows);
+  };
   return (
     <>
       <Head>
@@ -38,7 +42,9 @@ function Index(props) {
         <Navbar />
         <Top />
         <div className="container py-5">
+        <div>
           <Search />
+    </div>
           <div class={`card border-0 shadow ${style.cardStyle}`}>
             {rows.map((item, key) => (
               <React.Fragment key={key}>
@@ -47,14 +53,15 @@ function Index(props) {
                   name: item['user.fullname'],
                   job: item['job'],
                   location: item['domicile'],
-                  skills: item?.skills
+                  skills: item?.skills,
+                  slug: item?.id
                 }} />
                 <hr />
               </React.Fragment>
             ))}
           </div>
           <div className="d-flex justify-content-center mt-5">
-            {/* <nav>
+            <nav>
               <ul class="pagination">
                 <li
                   class="page-item"
@@ -100,7 +107,7 @@ function Index(props) {
                   </a>
                 </li>
               </ul>
-            </nav> */}
+            </nav>
           </div>
         </div>
       </main>
@@ -109,30 +116,23 @@ function Index(props) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const jobList = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=1`
-  );
-  const convertData = jobList.data;
-
-  const search = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=10&page=1&keyword=${context.query.keyword}&order=${context.query.order}&sortBy=id`
-  );
-  const convertDataSearch = search.data;
-
-
-  console.log(context.query.order)
-
-
-
-  // const token = getCookie("token", { req, res });
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?limit=5&page=1`
+    );
+    const convertData = jobList.data;
+    
+    const search = await axios.get(
+      `${process.env.NEXT_PUBLIC_API_URL}/v1/user/list?&keyword=${context?.query?.keyword || ""}&order=${context?.query?.order || "DESC"}&sortBy=id`
+      );
+      const convertDataSearch = search.data;
 
   return {
     props: {
       jobList: convertData,
       search: convertDataSearch,
-
     }, // will be passed to the page component as props
+    revalidate: 30, //second
   };
 }
 

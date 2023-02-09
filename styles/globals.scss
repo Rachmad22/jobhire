@@ -23,3 +23,11 @@ a {
     background-color: $primary !important;
     border-color: $primary !important;
 }
+
+
+.pagination .active {
+    a {
+        background-color: $primary !important;
+        color: #fff !important;
+    }
+}

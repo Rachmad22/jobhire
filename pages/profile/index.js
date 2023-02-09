@@ -1,15 +1,18 @@
 // import axios from "axios";
 import React from "react";
-import style from "../styles/pages/profile.module.scss";
+import style from "../../styles/pages/profile.module.scss";
 import Navbar from "@/components/organisms/navbar";
 import Footer from "@/components/organisms/Footer";
 import { GrLocation } from "react-icons/gr";
 import Head from "next/head";
-import Portofolio from "@/components/molecules/portofolio"
+import Portofolio from "@/components/molecules/portofolio";
 import Skill from "@/components/molecules/skillProfile";
 import Sosmed from "@/components/molecules/sosmed";
+import axios from "axios";
 
-function Profile() {
+function Profile(props) {
+  const { detailProfile } = props
+
   return (
     <>
       <Head>
@@ -63,5 +66,21 @@ function Profile() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  const detailProfile = await axios.get(
+    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/profile`
+  );
+  const convertData = detailProfile.data;
+
+      console.log(convertData)
+
+  return {
+    props: {
+      detailProfile: convertData,
+    }, // will be passed to the page component as props
+  };
+}
+
 
 export default Profile;

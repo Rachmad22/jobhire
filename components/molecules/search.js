@@ -35,7 +35,7 @@ function Search() {
                   Sort
                 </option>
                 <option value="DESC">Newest</option>
-                <option value="ASC">oldest</option>
+                <option value="ASC">Oldest</option>
                 {/* <option value="domicile_desc">A-Z</option>
                 <option value="release_desc">Z-A</option>
                 <option value="release_desc">Sortir berdasarkan fulltime</option> */}

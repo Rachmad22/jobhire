@@ -88,14 +88,16 @@ function Portofolio() {
             <div className="tab-pane fade show active">
               <div className="card">
                 <div className="card-body">
-                  {porto.map((item, key) => (
-                    <div key={key} className={`card ${style.porto}`}>
-                      <img src={item.src} alt={key} className="card-image-top" />
-                      <div class="card-body">
-                        <p class="card-title">{item.title}</p>
+                  <div className="row gap-4">
+                    {porto.map((item, key) => (
+                      <div key={key} className={`card ${style.porto}`}>
+                        <img src={item.src} alt={key} className="card-image-top" />
+                        <div class="card-body">
+                          <p class="card-title text-center">{item.title}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

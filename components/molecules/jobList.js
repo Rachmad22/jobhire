@@ -40,7 +40,7 @@ function JobItemList({ item }) {
           </div>
         </div>
         <div className="col-md-2">
-          <Link href={`/jobs/details/${item?.name}`}>
+          <Link href={`/jobs/details/${item?.slug}`}>
             <button
               type="button"
               className={`btn btn-primary btn-lg`}
