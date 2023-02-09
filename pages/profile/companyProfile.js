@@ -3,7 +3,7 @@ import Footer from "@/components/organisms/Footer";
 import Navbar from "@/components/organisms/navbar";
 import React from "react";
 import { GrLocation } from "react-icons/gr";
-import style from "../../styles/pages/CompanyProfile.module.scss"
+import style from "../../styles/pages/companyProfile.module.scss"
 
 
 
