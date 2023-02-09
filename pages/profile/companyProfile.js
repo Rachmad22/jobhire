@@ -7,7 +7,7 @@ import style from "../../styles/pages/companyProfile.module.scss"
 
 
 
-export default function CompanyProfile() {
+function CompanyProfile() {
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function CompanyProfile() {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                 <button className={`btn btn-primary ${style.push}`}>Edit Profile</button>
                 <div>
-                <Sosmed />
+                {/* <Sosmed /> */}
 
                 </div>
 
@@ -40,3 +40,5 @@ export default function CompanyProfile() {
     </>
   )
 }
+
+export default CompanyProfile;
