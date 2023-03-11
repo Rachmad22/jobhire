@@ -29,11 +29,16 @@ const Notification = (props) => {
     <div className="container">
      <div className="row pb-5">
       <div className="col">
-       <div className="card shadow p-3" style={{ zIndex: 5, marginTop: "100px" }}>
+       <div className={`card shadow p-3`} style={{ zIndex: 5, marginTop: "100px" }} >
         <div className="card-header">
          <h3>Notification</h3>
         </div>
-        <div className="card-body">
+        <div className="card-body" style={hireHistory?.length === 0 ? { height: "200px" } : null}>
+         {hireHistory?.length === 0 ? (
+          <div className="d-flex align-items-center justify-content-center h-100">
+           <h5>No Hiring Invitation</h5>
+          </div>
+         ) : null}
          {hireHistory?.slice(0, 5).map((item, key) => {
           return (
            <React.Fragment key={key}>
@@ -79,34 +84,34 @@ export async function getServerSideProps({ req, res }) {
  const token = getCookie("token", { req, res });
 
  // is login yet?
- if(!token){
-  return{
-   redirect:{
+ if (!token) {
+  return {
+   redirect: {
     destination: '/auth/login',
     // permanent: false,
     // statusCode: 301
    }
   }
- }else{
+ } else {
   const config = {
    headers: {
     Authorization: `Bearer ${token}`,
    },
   }
- 
+
   const hireHistory = await axios.get(
    `${process.env.NEXT_PUBLIC_API_URL}/v1/user/profile`, config
   )
-   const convertData = hireHistory?.data?.data?.[0]?.hire_histories;
+  const convertData = hireHistory?.data?.data?.[0]?.hire_histories;
 
-  
-   return {
-    props: {
-     hireHistory: convertData,
-    }, // will be passed to the page component as props
-   };
-  }
+
+  return {
+   props: {
+    hireHistory: convertData,
+   }, // will be passed to the page component as props
+  };
  }
+}
 
 
 export default Notification
