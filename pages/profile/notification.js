@@ -78,22 +78,35 @@ export async function getServerSideProps({ req, res }) {
  // get data from cookie
  const token = getCookie("token", { req, res });
 
- const config = {
-  headers: {
-   Authorization: `Bearer ${token}`,
-  },
+ // is login yet?
+ if(!token){
+  return{
+   redirect:{
+    destination: '/auth/login',
+    // permanent: false,
+    // statusCode: 301
+   }
+  }
+ }else{
+  const config = {
+   headers: {
+    Authorization: `Bearer ${token}`,
+   },
+  }
+ 
+  const hireHistory = await axios.get(
+   `${process.env.NEXT_PUBLIC_API_URL}/v1/user/profile`, config
+  )
+   const convertData = hireHistory?.data?.data?.[0]?.hire_histories;
+
+  
+   return {
+    props: {
+     hireHistory: convertData,
+    }, // will be passed to the page component as props
+   };
+  }
  }
 
- const hireHistory = await axios.get(
-  `${process.env.NEXT_PUBLIC_API_URL}/v1/user/profile`, config
- );
- const convertData = hireHistory?.data?.data?.[0]?.hire_histories;
-
- return {
-  props: {
-   hireHistory: convertData,
-  }, // will be passed to the page component as props
- };
-}
 
 export default Notification

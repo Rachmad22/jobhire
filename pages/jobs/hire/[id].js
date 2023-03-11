@@ -94,11 +94,9 @@ export default function Hire(props) {
          <h5>Skills</h5>
 
          <div className="d-flex gap-2 flex-wrap mt-3">
-          {JSON.parse(profile?.skills).lenght === 0 && JSON.parse(profile?.skills).lenght === "undefined" ? (
-           <h6>No update skills</h6>
-           ) : (
-           <Skill item={{ skills: JSON.parse(profile.skills) }} />
-          )}
+          {JSON.parse(profile?.skills).length === 0 ? <h5>No update skills</h5> : null}
+          <Skill item={{ skills: JSON.parse(profile.skills) }} />
+
          </div>
         </div>
 
