@@ -3,6 +3,7 @@ import React from "react";
 import style from "../../../styles/pages/signupStyles.module.scss";
 import Head from "next/head";
 import Link from "next/link";
+import { getCookie } from "cookies-next";
 
 function Signup() {
   const [email, setEmail] = React.useState("");
@@ -12,6 +13,15 @@ function Signup() {
   
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+
+  React.useEffect(() => {
+    let checkIsLogin =
+      getCookie("token") && getCookie("profile");
+
+    if (checkIsLogin) {
+      router.replace("/")
+    }
+  }, []);
 
   const handleSubmit = async () => {
     try {

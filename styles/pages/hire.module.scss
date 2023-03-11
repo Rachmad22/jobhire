@@ -1,3 +1,11 @@
+.overlay {
+    background-color: #5E50A1;
+    height: 50vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+}
+
 .left {
     width: 100%;
     margin-top: 100px;

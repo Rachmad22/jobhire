@@ -1,21 +1,26 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
 import style from "../../../styles/pages/loginStyles.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { setCookie } from "cookies-next";
+import { setCookie, getCookie } from "cookies-next";
+// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
 
 function General() {
-  const router = useRouter();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+
+
+  const router = useRouter();
 
   React.useEffect(() => {
     let checkIsLogin =
-      localStorage.getItem("token") && localStorage.getItem("profile");
+      getCookie("token") && getCookie("profile");
 
     if (checkIsLogin) {
       router.replace("/")
@@ -33,11 +38,17 @@ function General() {
 
       setIsLoading(false);
       setError(null);
-      if (!connect?.data?.data.recruiter_id) {
-        localStorage.setItem("token", connect?.data?.token);
-        localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
 
-        // setCookie("token", connect?.data?.token);
+      if (!connect?.data?.data.recruiter_id) {
+        setSuccess(connect?.data?.messages)
+        // localStorage.setItem("token", connect?.data?.token);
+        // localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
+
+        // dispatch(profileReducer.setProfile(connect?.data?.data));
+        // dispatch(profileReducer.setToken(connect?.data?.token));
+
+        setCookie("token", connect?.data?.token);
+        setCookie("profile", JSON.stringify(connect?.data?.data));
         router.push("/jobs")
       } else {
         setError("Can't login in this area");
@@ -54,7 +65,7 @@ function General() {
     <>
       <Head>
         <title>Login | Peworld</title>
-        </Head>
+      </Head>
       <div className={style.main}>
         <div className="row">
           <div className="col-md-6">
@@ -81,6 +92,11 @@ function General() {
                 {error && (
                   <div className="alert alert-danger mb-3" role="alert">
                     {error}
+                  </div>
+                )}
+                {success && (
+                  <div className="alert alert-success mb-3" role="alert">
+                    {success}
                   </div>
                 )}
 

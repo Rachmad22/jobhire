@@ -27,7 +27,12 @@ function CompanyProfile() {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum erat orci, mollis nec gravida sed, ornare quis urna. Curabitur eu lacus fringilla, vestibulum risus at.</p>
                 <button className={`btn btn-primary ${style.push}`}>Edit Profile</button>
                 <div>
-                {/* <Sosmed /> */}
+
+                  <p><img src="/images/mail.svg" alt="mail" className="me-3" />Louist91@gmail.com</p>
+                  <p><img src="/images/instagram.svg" alt="ig" className="me-3" />@Louist91</p>
+                  <p><img src="/images/github.svg" alt="github" className="me-3" />@Louistommo</p>
+                  <p><img src="/images/gitlab.svg" alt="gitlab" className="me-3" />@Louistommo91</p>
+                  {/* <Sosmed /> */}
 
                 </div>
 

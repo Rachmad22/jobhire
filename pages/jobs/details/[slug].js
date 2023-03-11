@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import Link from "next/link";
 import Navbar from "@/components/organisms/navbar";
 import Footer from "@/components/organisms/Footer";
@@ -10,6 +10,7 @@ import Sosmed from "@/components/molecules/sosmed";
 import style from "../../../styles/pages/profile.module.scss"
 import { GrLocation } from "react-icons/gr";
 import Portofolio from "@/components/molecules/portofolio";
+import { getCookie } from "cookies-next";
 
 function DetailProfile(props) {
   const { profile } = props;
@@ -17,11 +18,27 @@ function DetailProfile(props) {
   const {
     query: { slug },
   } = router;
-// console.log(profile.user)
+
+  const [isDisabled, setIsDisabled] = React.useState(false)
+
+  const recruiter = JSON.parse(getCookie("profile")).recruiter_id
+
+  useEffect(() => {
+    const login = getCookie("profile")
+    if (!login) {
+      router.replace("/jobs")
+    }
+    if (recruiter === 0) {
+      setIsDisabled(true)
+    } else {
+      setIsDisabled(false)
+    }
+  }, [])
+  console.log(recruiter)
   return (
     <>
       <Head>
-        <title>{slug} | Hire Jobs</title>
+        <title>{slug} | Detail Talent</title>
       </Head>
       <main>
         <Navbar />
@@ -39,15 +56,20 @@ function DetailProfile(props) {
                   <p className={`card-text ${style.detail}`}>{profile.company}</p>
                   <p className={`card-text ${style.detail}`}>{profile.description}</p>
                   <div className="d-grid mt-5">
-                    <Link href="/jobs/hire" className="btn btn-primary btn-lg mb-3 text-white">Hire</Link>
+                    <Link href={!isDisabled ? `/jobs/hire/${slug}` : "#"}>
+                      <button className="btn btn-primary mb-3 text-white" style={{ width: "300px" }} disabled={isDisabled}>Hire</button>
+                    </Link>
                   </div>
-                  <h5>Skill</h5>
 
-                  <div className="d-flex gap-2 flex-wrap mt-3">
-                    <Skill item={{skills: JSON.parse(profile.skills)}}/>
+                  <div>
+                    <h5>Skill</h5>
+
+                    <div className="d-flex gap-2 flex-wrap mt-3">
+                      <Skill item={{ skills: JSON.parse(profile.skills) }} />
+                    </div>
 
                     <div className="mt-3">
-                      <Sosmed item={{email: profile.user.email}}/>
+                      <Sosmed item={{ email: profile.user.email }} />
                     </div>
                   </div>
 
@@ -58,16 +80,16 @@ function DetailProfile(props) {
             <div className="col-md-8">
               <div className={style.index}>
                 <Portofolio item={{
-                portofolio: profile?.portfolios,
-                link: profile['portofolios.link'],
-                photo: profile['portfolios.photo'],
-                type: profile['portfolios.type'],
-                work_experience: profile?.work_experiences,
-                createdAt: profile['work_experiences.createdAt'],
-                position: profile['work_experiences.position'],
-                company: profile['work_experiences.company'],
-                description: profile['work_experiences.description'],
-                }}/>
+                  portofolio: profile?.portfolios,
+                  link: profile['portofolios.link'],
+                  photo: profile['portfolios.photo'],
+                  type: profile['portfolios.type'],
+                  work_experience: profile?.work_experiences,
+                  createdAt: profile['work_experiences.createdAt'],
+                  position: profile['work_experiences.position'],
+                  company: profile['work_experiences.company'],
+                  description: profile['work_experiences.description'],
+                }} />
 
               </div>
             </div>
@@ -84,16 +106,17 @@ export async function getServerSideProps(context) {
   const {
     query: { slug },
   } = context;
+
   const profile = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/v1/user/detail/${slug}`
   );
-  const convertData = profile.data.data[0];
+  const convertData = profile?.data?.data[0];
 
   return {
     props: {
       profile: convertData,
     }, // will be passed to the page component as props
-  };
+  }
 }
 
 export default DetailProfile;

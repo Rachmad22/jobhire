@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.2.6",
     "bootstrap": "^5.2.3",
+    "cookies": "^0.8.0",
     "cookies-next": "^2.1.1",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
@@ -19,6 +21,11 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.7.1",
-    "sass": "^1.57.1"
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^4.0.0",
+    "sass": "^1.57.1",
+    "sweetalert2": "^11.7.3"
   }
 }

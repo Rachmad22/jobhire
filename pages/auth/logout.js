@@ -1,13 +1,18 @@
 import { useRouter } from "next/router";
 import React from "react";
+import { deleteCookie } from "cookies-next";
+
 
 export default function Logout() {
   const router = useRouter();
+
   React.useState(() => {
     setTimeout(() => {
-      localStorage.clear();
-      router.push("/auth/login");
-    }, 1500);
+      deleteCookie("profile");
+      deleteCookie("token");
+      router.replace("/auth/login");
+    }, 1000)
+
   }, []);
 
   return (

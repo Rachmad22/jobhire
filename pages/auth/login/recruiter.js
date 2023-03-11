@@ -3,7 +3,7 @@ import React from "react";
 import style from "../../../styles/pages/loginStyles.module.scss";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { setCookie } from "cookies-next";
+import { setCookie, getCookie } from "cookies-next";
 import Link from "next/link";
 
 function Recruiter() {
@@ -11,11 +11,13 @@ function Recruiter() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState(null);
+  const [error, setError] = React.useState("");
+  const [success, setSuccess] = React.useState("");
+
 
   React.useEffect(() => {
     let checkIsLogin =
-      localStorage.getItem("token") && localStorage.getItem("profile");
+      getCookie("token") && getCookie("profile");
 
     if (checkIsLogin) {
       router.replace("/")
@@ -33,14 +35,12 @@ function Recruiter() {
 
       setIsLoading(false);
       setError(null);
-      console.log(connect?.data?.data.recruiter_id)
+
       if (connect?.data?.data.recruiter_id) {
-        localStorage.setItem("token", connect?.data?.token);
-        localStorage.setItem("profile", JSON.stringify(connect?.data?.data));
-
-        // setCookie("token", connect?.data?.token);
+        setSuccess(connect?.data?.messages)
+        setCookie("token", connect?.data?.token);
+        setCookie("profile", JSON.stringify(connect?.data?.data));
         router.push("/jobs")
-
       } else {
         setError("Can't login in this area");
       }
@@ -83,6 +83,11 @@ function Recruiter() {
                 {error && (
                   <div className="alert alert-danger mb-3" role="alert">
                     {error}
+                  </div>
+                )}
+                {success && (
+                  <div className="alert alert-success mb-3" role="alert">
+                    {success}
                   </div>
                 )}
 
