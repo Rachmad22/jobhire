@@ -24,17 +24,13 @@ function DetailProfile(props) {
   const recruiter = JSON.parse(getCookie("profile")).recruiter_id
 
   useEffect(() => {
-    const login = getCookie("profile")
-    if (!login) {
-      router.replace("/jobs")
-    }
     if (recruiter === 0) {
       setIsDisabled(true)
     } else {
       setIsDisabled(false)
     }
   }, [])
-  console.log(recruiter)
+  // console.log(recruiter)
   return (
     <>
       <Head>

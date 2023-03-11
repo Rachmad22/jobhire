@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "../../styles/pages/jobStyles.module.scss";
 import Head from "next/head";
 import JobItemList from "../../components/molecules/jobList";
@@ -9,7 +9,7 @@ import Top from "@/components/molecules/top";
 import Navbar from "@/components/organisms/navbar";
 import Search from "@/components/molecules/search";
 import { useRouter } from "next/router";
-// import { getCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 
 function Index(props) {
   const router = useRouter()
@@ -17,10 +17,18 @@ function Index(props) {
 
   const { data: { rows, count } } = router.query.keyword || router.query.order ? search : jobList
 
-  // React.useEffect(() => {
-  //   console.log(sort)
-    
-  // }, [setSort]);
+  const [isDisabled, setIsDisabled] = React.useState(false)
+
+  
+  useEffect(() => {
+    const isLogin = getCookie("profile", "token")
+    if (!isLogin) {
+      setIsDisabled(true)
+    } else {
+      setIsDisabled(false)
+    }
+  }, [])
+
   const [data, setData] = React.useState(rows);
   const [page, setPage] = React.useState(1);
   const [total, setTotal] = React.useState(Math.ceil(count / 5));
@@ -54,7 +62,7 @@ function Index(props) {
                   job: item['job'],
                   location: item['domicile'],
                   skills: item?.skills,
-                  slug: item?.id
+                  slug: isDisabled ? "#" : item?.id
                 }} />
                 <hr />
               </React.Fragment>

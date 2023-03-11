@@ -6,6 +6,7 @@ import Link from "next/link";
 
 function JobItemList({ item }) {
 
+  console.log(item.slug)
   return (
     <React.Fragment>
       <div className="row py-4 align-items-center">
@@ -40,7 +41,7 @@ function JobItemList({ item }) {
           </div>
         </div>
         <div className="col-md-2">
-          <Link href={`/jobs/details/${item?.slug}`}>
+          <Link href={item?.slug === "#" ? "/jobs" : `/jobs/details/${item?.slug}`}>
             <button
               type="button"
               className={`btn btn-primary btn-lg`}
