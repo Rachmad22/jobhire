@@ -19,9 +19,9 @@ function DetailProfile(props) {
   query: { slug },
  } = router;
 
- // const ski = JSON.parse(profile?.skills)
- // console.log(ski);
+ console.log(profile)
 
+ // disabled hire button if user not a recruiter
  const [isDisabled, setIsDisabled] = React.useState(false)
 
  const recruiter = JSON.parse(getCookie("profile")).recruiter_id
@@ -33,7 +33,7 @@ function DetailProfile(props) {
    setIsDisabled(false)
   }
  }, [])
- // console.log(recruiter)
+
  return (
   <>
    <Head>
@@ -55,6 +55,8 @@ function DetailProfile(props) {
          <p className={`card-text ${style.detail}`}>{profile.company}</p>
          <p className={`card-text ${style.detail}`}>{profile.description}</p>
          <div className="d-grid mt-5">
+
+          {/* a recruiter only who can hire */}
           <Link href={!isDisabled ? `/jobs/hire/${slug}` : "#"}>
            <button className="btn btn-primary mb-3 text-white" style={{ width: "300px" }} disabled={isDisabled}>Hire</button>
           </Link>
@@ -81,6 +83,7 @@ function DetailProfile(props) {
       </div>
       <div className="col-md-8">
        <div className={style.index}>
+
         <Portofolio item={{
          portofolio: profile?.portfolios,
          link: profile['portofolios.link'],
@@ -117,7 +120,7 @@ export async function getServerSideProps(context) {
  return {
   props: {
    profile: convertData,
-  }, // will be passed to the page component as props
+  },
  }
 }
 

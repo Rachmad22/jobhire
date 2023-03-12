@@ -10,7 +10,6 @@ import axios from "axios";
 const Notification = (props) => {
 
  const { hireHistory } = props
- console.log(hireHistory)
 
  const [isClicked, setIsClicked] = React.useState(false)
 
@@ -33,12 +32,18 @@ const Notification = (props) => {
         <div className="card-header">
          <h3>Notification</h3>
         </div>
+
+        {/* set height when no invitation */}
         <div className="card-body" style={hireHistory?.length === 0 ? { height: "200px" } : null}>
+
+         {/* when no invitation */}
          {hireHistory?.length === 0 ? (
           <div className="d-flex align-items-center justify-content-center h-100">
            <h5>No Hiring Invitation</h5>
           </div>
          ) : null}
+
+         {/* some invitation */}
          {hireHistory?.slice(0, 5).map((item, key) => {
           return (
            <React.Fragment key={key}>
@@ -108,7 +113,7 @@ export async function getServerSideProps({ req, res }) {
   return {
    props: {
     hireHistory: convertData,
-   }, // will be passed to the page component as props
+   },
   };
  }
 }

@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 
 function Profile(props) {
  const { detailProfile } = props
- // console.log(detailProfile?.data?.[0])
 
  const userDetail = detailProfile?.data?.[0]
  const user = detailProfile?.data?.[0]?.user
@@ -21,17 +20,18 @@ function Profile(props) {
  const [isLoading, setIsLoading] = React.useState(false)
  const [error, setError] = React.useState("")
 
+ // form edit profile
  const [fullname, setFullname] = React.useState("")
  const [jobdesc, setJobdesc] = React.useState("")
  const [domicile, setDomicile] = React.useState("")
  const [workplace, setWorkplace] = React.useState("")
  const [desc, setDesc] = React.useState("")
 
+ // add skill form
  const [skillsEntered, setSkillsEntered] = React.useState([]);
  const [skillsValue, setSkillsValue] = React.useState("");
- // const [skills, setSkills] = React.useState([])
- // console.log(skillsEntered);
 
+ // add work experience form
  const [position, setPosition] = React.useState("")
  const [company, setCompany] = React.useState("")
  const [year, setYear] = React.useState("")
@@ -59,7 +59,7 @@ function Profile(props) {
   )
    .then((res) => {
     setIsLoading(false)
-    console.log(res?.data?.messages)
+    // console.log(res?.data?.messages)
     Swal.fire(
      'Good job!',
      'You updated the biodata!',
@@ -69,7 +69,7 @@ function Profile(props) {
    .catch((err) => {
     setIsLoading(false)
     setError(err?.response?.data?.message ?? err?.response?.data?.message?.fullname?.message ?? err?.response?.data?.message?.description?.message)
-    console.log(err?.response?.data?.message)
+    // console.log(err?.response?.data?.message)
    })
  }
 
@@ -88,7 +88,30 @@ function Profile(props) {
    })
    .catch((err) => {
     setIsLoading(false)
-    console.log(err?.response?.data?.message)
+    // console.log(err?.response?.data?.message)
+   })
+ }
+
+ // add work experience 
+ const editWorkExprc = async () => {
+  setIsLoading(true)
+  await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/work-experience`, {
+   position,
+   company,
+   date: year,
+   description,
+  }, config)
+   .then((res) => {
+    setIsLoading(false)
+    Swal.fire(
+     'Good job!',
+     'You updated the work experience!',
+     'success'
+    )
+   })
+   .catch((err) => {
+    setIsLoading(false)
+    // console.log(err?.response?.data?.message)
    })
  }
 
@@ -105,6 +128,7 @@ function Profile(props) {
      <div className="row">
       <div className="col-md-4">
 
+       {/* left card profile */}
        <div className={`card shadow ${style.left}`}>
         <img src={user?.photo_profile || "https://st2.depositphotos.com/1006318/5909/v/600/depositphotos_59095493-stock-illustration-profile-icon-male-avatar.jpg"} className={`card-img-top ${style.picture}`} alt="picture" />
         <div className="card-body">
@@ -113,6 +137,8 @@ function Profile(props) {
          <p className={`card-text ${style.detail}`}><GrLocation /> {userDetail?.domicile}</p>
 
          <div className="d-grid mt-5">
+
+          {/* button for save the changes or discard */}
           <button className="btn btn-primary btn-lg mb-3" onClick={updateProfile} disabled={isLoading}>{isLoading ? "loading..." : "Save"}</button>
           <button className="btn btn-light btn-lg mb-3">Cancel</button>
          </div>
@@ -135,6 +161,7 @@ function Profile(props) {
           </div>
          )}
 
+         {/* edit profile form */}
          <form>
 
           <div class="mb-3">
@@ -171,6 +198,7 @@ function Profile(props) {
          <h5>Skills</h5>
         </div>
         <div className="card-body">
+         {/* add skill form */}
          <div>
           {skillsEntered.map((_item) => (
            <button class="btn btn-primary" key={_item}>
@@ -213,6 +241,8 @@ function Profile(props) {
          <h5>Work Experience</h5>
         </div>
         <div className="card-body">
+
+         {/* add work experience form */}
          <form>
           <div class="form-floating mb-4">
            <input type="text" class="form-control" id="position" placeholder="position" onChange={(e) => setPosition(e.target.value)} />
@@ -240,7 +270,7 @@ function Profile(props) {
           </div>
 
           <div class="d-grid mb-4">
-           <button className="btn btn-warning text-light" type="submit">Add work experience</button>
+           <button className="btn btn-warning text-light" type="submit" onClick={editWorkExprc}>Add work experience</button>
           </div>
          </form>
         </div>
@@ -251,6 +281,8 @@ function Profile(props) {
          <h5>Portofolio</h5>
         </div>
         <div className="card-body">
+
+         {/* add portofolio form */}
          <form>
           <div class="form-floating mb-4">
            <input type="text" class="form-control" id="apkname" placeholder="apkname" onChange={(e) => setapkname(e.target.value)} />
@@ -269,9 +301,7 @@ function Profile(props) {
          </form>
         </div>
        </div>
-       {/* <div class="d-grid mb-3">
-        <button class="btn btn-warning text-light fw-bold" type="submit" onClick={hire} disabled={isLoading}>{isLoading ? "Loading..." : "Hire"}</button>
-       </div> */}
+
       </div>
 
      </div>

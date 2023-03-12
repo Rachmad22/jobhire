@@ -18,9 +18,9 @@ export default function Hire(props) {
   query: { id },
  } = router;
 
- // console.log(JSON.parse(profile.skills).lenght);
  const profileTalent = profile?.user
 
+ // hiring form
  const [purpose, setPurpose] = React.useState("")
  const [fullname, setFullname] = React.useState("")
  const [email, setEmail] = React.useState("")
@@ -112,6 +112,8 @@ export default function Hire(props) {
        </div>
 
        <div className="card-body">
+
+        {/* hiring form */}
         <form>
          <div class="form-floating mb-3">
           <input type="text" class="form-control" id="proposalmessage" placeholder="Project" onChange={(e) => setPurpose(e.target.value)} />
