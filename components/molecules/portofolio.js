@@ -62,8 +62,6 @@ function Portofolio({ item }) {
   setActiveTab(tab);
  };
 
- console.log(item?.portofolio)
-
  return (
   <>
    <div>
@@ -88,7 +86,7 @@ function Portofolio({ item }) {
     <div className="tab-content">
      {activeTab === "portofolio" && (
       <div className="tab-pane fade show active">
-       <div className="card">
+       <div className="card p-2">
         <div className="card-body">
          <div className="row gap-4">
           {item?.portofolio?.length === 0 ? (
@@ -97,12 +95,19 @@ function Portofolio({ item }) {
            </div>
           ) : null}
           {item.portofolio.map((item, key) => (
-           <Link href={item.link} key={key} className={`card ${style.porto}`}>
-            <img src={item.photo} alt={key} className="card-image-top bg-dark" />
-            <div class="card-body">
-             <p class="card-title text-center">{item.type}</p>
-            </div>
-           </Link>
+           <div className={`card p-2 shadow`} key={key} style={{width: "200px"}}>
+            <div className="card-header">
+             <h6>{item.name}</h6>
+             </div>
+            <Link href={item.link} >
+             <div className="card-body d-flex align-items-center">
+             <img src={item.photo} alt={item.name} style={{ objectFit: "cover", height: "140px", width: "180px" }} />
+             </div>
+             <div class="card-footer">
+              <p class="text-center">{item.type}</p>
+             </div>
+            </Link>
+           </div>
           ))}
          </div>
         </div>
@@ -126,7 +131,7 @@ function Portofolio({ item }) {
            <div className="col-5">
             <h3>{_item.position}</h3>
             <h5>{_item.company}</h5>
-            <p>{_item.createdAt}</p>
+            <p>{_item.date}</p>
             <p>{_item.description}</p>
            </div>
           </div>

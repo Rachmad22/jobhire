@@ -37,6 +37,13 @@ function Profile(props) {
  const [year, setYear] = React.useState("")
  const [description, setDescription] = React.useState("")
 
+ // add portofolio form
+ const [nameApk, setNameApk] = React.useState("")
+ const [photoApk, setPhotoApk] = React.useState("")
+ const [linkApk, setLinkApk] = React.useState("")
+ const [type, setType] = React.useState("")
+
+
  // get data from cookie
  const token = getCookie("token");
 
@@ -92,16 +99,44 @@ function Profile(props) {
    })
  }
 
- // add work experience 
+ // add portofolio 
+
+ const addPortofolio = async () => {
+  setIsLoading(true)
+  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/portofolio`,
+   {
+    name: nameApk,
+    photo: photoApk,
+    link: linkApk,
+    type,
+   }
+   , config)
+   .then((res) => {
+    console.log(res?.data?.messages)
+    setIsLoading(false)
+    Swal.fire(
+     'Good job!',
+     'You updated the portofolio!',
+     'success'
+    )
+   })
+   .catch((err) => {
+    setIsLoading(false)
+    // console.log(err?.response?.data?.message)
+   })
+ }
+
+ // add work experience
  const editWorkExprc = async () => {
   setIsLoading(true)
-  await axios.patch(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/work-experience`, {
+  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/work-experience`, {
    position,
    company,
    date: year,
    description,
   }, config)
    .then((res) => {
+    console.log(res?.data?.messages)
     setIsLoading(false)
     Swal.fire(
      'Good job!',
@@ -270,7 +305,7 @@ function Profile(props) {
           </div>
 
           <div class="d-grid mb-4">
-           <button className="btn btn-warning text-light" type="submit" onClick={editWorkExprc}>Add work experience</button>
+           <button className="btn btn-warning text-light" type="submit" onClick={editWorkExprc}>{isLoading ? "loading..." : "Add work experience"}</button>
           </div>
          </form>
         </div>
@@ -285,18 +320,41 @@ function Profile(props) {
          {/* add portofolio form */}
          <form>
           <div class="form-floating mb-4">
-           <input type="text" class="form-control" id="apkname" placeholder="apkname" onChange={(e) => setapkname(e.target.value)} />
+           <input type="text" class="form-control" id="apkname" placeholder="apkname" onChange={(e) => setNameApk(e.target.value)} />
            <label for="apkname">Aplication&apos;s Name</label>
           </div>
 
           <div class="form-floating mb-4">
-           <input type="text" class="form-control" id="link" placeholder="link" onChange={(e) => setlink(e.target.value)} />
+           <input type="text" class="form-control" id="link" placeholder="link" onChange={(e) => setLinkApk(e.target.value)} />
            <label for="link">Link Repository</label>
+          </div>
+
+          <div className="row d-flex align-items-center mb-3">
+           <div className="col-3">
+            <div class="form-check">
+             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="desktop" onChange={(e) => setType(e.target.value)} />
+             <label class="form-check-label" for="flexRadioDefault1">
+              Desktop
+             </label>
+            </div>
+           </div>
+           <div className="col-3">
+            <div class="form-check">
+             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="mobile" onChange={(e) => setType(e.target.value)} />
+             <label class="form-check-label" for="flexRadioDefault2">
+              Mobile
+             </label>
+            </div>
+           </div>
           </div>
 
           <div class="mb-4">
            <label for="images">Upload aplication&apos;s images</label>
-           <input type="file" class="form-control" id="images" placeholder="images" onChange={(e) => setPosition(e.target.value)} />
+           <input type="text" class="form-control" id="images" placeholder="images" onChange={(e) => setPhotoApk(e.target.value)} />
+          </div>
+
+          <div class="d-grid mb-4">
+           <button className="btn btn-outline-warning" type="submit" disabled={isLoading} onClick={addPortofolio}>{isLoading ? "loading..." : "Add portofolio"}</button>
           </div>
          </form>
         </div>
