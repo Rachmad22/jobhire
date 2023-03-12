@@ -4,8 +4,10 @@ import style from "../../../styles/pages/signupStyles.module.scss";
 import Head from "next/head";
 import Link from "next/link";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/router";
 
 function SignupRecruiter() {
+ const router = useRouter()
  const [email, setEmail] = React.useState("");
  const [password, setPassword] = React.useState("");
  const [phone_number, setPhone_number] = React.useState("");
@@ -39,6 +41,7 @@ function SignupRecruiter() {
    });
    setIsLoading(false);
    setError(null);
+   router.push("/auth/login/recruiter")
 
   } catch (error) {
    console.log(error)
