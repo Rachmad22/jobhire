@@ -103,7 +103,7 @@ function Profile(props) {
 
  const addPortofolio = async () => {
   setIsLoading(true)
-  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/portofolio`,
+  await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/v1/user/portfolio`,
    {
     name: nameApk,
     photo: photoApk,
