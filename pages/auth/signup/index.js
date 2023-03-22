@@ -68,11 +68,14 @@ function Signup() {
      <div className="col-md-6">
       <div className={style.centerContent}>
        <div className={style.colKanan}>
-        <h2>Halo, Pewpeople</h2>
-        <p className={error ? "mb-3" : "mb-5"}>
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
-         euismod ipsum et dui rhoncus auctor.
-        </p>
+        <div className={error ? "mb-3" : "mb-5"}>
+         <h2>Halo, Pewpeople</h2>
+         <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
+          euismod ipsum et dui rhoncus auctor.
+         </p>
+         <p>If you are a recruiter click <Link href="/auth/signup/recruiter">here</Link></p>
+        </div>
 
         {error && (
          <div class="alert alert-danger mb-3" role="alert">
@@ -162,8 +165,8 @@ function Signup() {
          </div>
 
          <p className="text-center">
-          Anda sudah punya akun?{" "}
-          <Link href="/auth/login">Login disini</Link>
+          already have an account?
+          <Link href="/auth/login"> Login here</Link>
          </p>
         </form>
        </div>
