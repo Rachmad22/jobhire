@@ -1,38 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<p align="center">
 
-## Getting Started
+  <h3 align="center">Job Hire</h3>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## ✏️ About
+Job Hire is a website-based application that contains job seekers who can be directly hired by recruiters. It is developed using ExpressJS for the backend and NextJS for the frontend by jobhire.
+
+
+## 🔖Build With
+
+- [Next Js](https://nextjs.org)
+- [Axios](https://www.npmjs.com/package/axios)
+- [Bootstrap](https://www.npmjs.com/package/bootstrap)
+- [Sweetalert](https://www.npmjs.com/package/sweetalert)
+
+## 💻 How To Install?
+
+- Clone This Repo
+
+```
+https://github.com/Rachmad22/jobhire.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Install Module
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Type ` npm start` To Start Website
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Screenshot
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Login Page | Register Page |
+| ------------- | ------------- |
+| ![Login](https://user-images.githubusercontent.com/116181515/230851840-3b721e3a-1677-4634-a88a-cb2aca6cb438.jpg)
+ |
 
-## Learn More
+| Home Page  | Detail Page |
+| ------------- | ------------- |
+| ![Landing](https://user-images.githubusercontent.com/116181515/230852048-68f76add-480c-49ff-bf31-82925c4dd3af.jpg)
+ | ![Detail Page](https://user-images.githubusercontent.com/116181515/230852878-37774fab-0d97-4cb7-96ba-288ec7908170.jpg)
+ |
 
-To learn more about Next.js, take a look at the following resources:
+| Profile Page |
+| ------------- |
+| ![Profile](https://user-images.githubusercontent.com/116181515/230853586-702e6c8a-fe81-4e53-a31e-d4a12d3cab9d.jpg)
+ |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## ✍️ Authors
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [@Rachmad22](https://github.com/Rachmad22)
