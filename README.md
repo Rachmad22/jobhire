@@ -35,19 +35,16 @@ npm install
 
 | Login Page |
 | ------------- |
-| ![Login](https://user-images.githubusercontent.com/116181515/230851840-3b721e3a-1677-4634-a88a-cb2aca6cb438.jpg)
- |
+| ![Login](https://user-images.githubusercontent.com/116181515/230851840-3b721e3a-1677-4634-a88a-cb2aca6cb438.jpg "Login Page")
 
 | Home Page  | Detail Page |
 | ------------- | ------------- |
-| ![Landing](https://user-images.githubusercontent.com/116181515/230852048-68f76add-480c-49ff-bf31-82925c4dd3af.jpg)
- | ![Detail Page](https://user-images.githubusercontent.com/116181515/230852878-37774fab-0d97-4cb7-96ba-288ec7908170.jpg)
- |
+| ![Landing](https://user-images.githubusercontent.com/116181515/230852048-68f76add-480c-49ff-bf31-82925c4dd3af.jpg "Home Page")
+ | ![Detail Page](https://user-images.githubusercontent.com/116181515/230852878-37774fab-0d97-4cb7-96ba-288ec7908170.jpg "Detail Page")
 
 | Profile Page |
 | ------------- |
-| ![Profile](https://user-images.githubusercontent.com/116181515/230853586-702e6c8a-fe81-4e53-a31e-d4a12d3cab9d.jpg)
- |
+| ![Profile](https://user-images.githubusercontent.com/116181515/230853586-702e6c8a-fe81-4e53-a31e-d4a12d3cab9d.jpg "Profile Page")
 
 
 ## ✍️ Authors
