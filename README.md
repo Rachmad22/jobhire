@@ -39,8 +39,7 @@ npm install
 
 | Home Page  | Detail Page |
 | ------------- | ------------- |
-| ![Landing](https://user-images.githubusercontent.com/116181515/230852048-68f76add-480c-49ff-bf31-82925c4dd3af.jpg "Home Page")
- | ![Detail Page](https://user-images.githubusercontent.com/116181515/230852878-37774fab-0d97-4cb7-96ba-288ec7908170.jpg "Detail Page")
+| ![Landing](https://user-images.githubusercontent.com/116181515/230852048-68f76add-480c-49ff-bf31-82925c4dd3af.jpg "Home Page") | ![Detail Page](https://user-images.githubusercontent.com/116181515/230852878-37774fab-0d97-4cb7-96ba-288ec7908170.jpg "Detail Page") |
 
 | Profile Page |
 | ------------- |
