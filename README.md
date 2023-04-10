@@ -33,8 +33,8 @@ npm install
 
 ## Screenshot
 
-| Login Page | Register Page |
-| ------------- | ------------- |
+| Login Page |
+| ------------- |
 | ![Login](https://user-images.githubusercontent.com/116181515/230851840-3b721e3a-1677-4634-a88a-cb2aca6cb438.jpg)
  |
 
